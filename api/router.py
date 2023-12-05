@@ -23,5 +23,15 @@ class Router:
         async def get_code(id):
             res = await controller.get_code(id)
             return res
+        
+        @router.put("/{id}")
+        async def update_code(id: str, data: dict):
+            res = await controller.update_code(id, data)
+            return res
+        
+        @router.delete("/{id}")
+        async def delete_code(id: str):
+            res = await controller.delete_code(id)
+            return res
 
         return router

@@ -3,14 +3,15 @@ from datetime import datetime
 from pydantic import BaseModel, Field
 
 
+
 class SnippetSchema(BaseModel):
     title: str = Field(...)
     code: str = Field(...)
     language: str = Field(...)
     tags: str = Field(...)
     favorite: bool = Field(default=False)
-    createdAt: datetime = Field(default=datetime.now())
-    updatedAt: datetime = Field(default=datetime.now())
+    createdAt: datetime = Field(default=datetime.isoformat(datetime.utcnow()))
+    updatedAt: datetime = Field(default=datetime.isoformat(datetime.utcnow()))
 
     class Config:
         json_schema_extra = {
@@ -20,8 +21,8 @@ class SnippetSchema(BaseModel):
                 "language": "Haskell",
                 "tags": "Haskell,Hello World",
                 "favorite": False,
-                "createdAt": datetime.now(),
-                "updatedAt": datetime.now(),
+                "createdAt": datetime.isoformat(datetime.utcnow()),
+                "updatedAt": datetime.isoformat(datetime.utcnow()),
             }
         }
 
@@ -37,11 +38,11 @@ class UpdateSnippetModel(BaseModel):
     class Config:
         json_schema_extra = {
             "example": {
-                "title": "Printing helloworld in Haskell",
+                "title": "Printing helloworld in Java",
                 "code": "print('Hello World my dear kids')",
-                "language": "Haskell",
-                "tags": "Haskell,Hello World",
+                "language": "Java",
+                "tags": "Java,Hello World",
                 "favorite": True,
-                "updatedAt": datetime.now(),
+                "updatedAt": datetime.isoformat(datetime.utcnow()),
             }
         }
